@@ -5,10 +5,10 @@
   - installation (unity, accounts)
   - beispiel ansehen --> gemeinsam!
   - projekt anlegen & repo initialisieren
-- grober plan für 1. prototyp
-  - menü?
+- grober plan fuer 1. prototyp
   - labyrinth
   - maus
+  - menue?
 
 ## refinement
 ???
