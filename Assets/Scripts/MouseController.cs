@@ -30,26 +30,26 @@ public class MouseController : MonoBehaviour
         float move = Input.GetAxis("Vertical"); //-1 backwards
         if (move != 0)
         {
-            switch (body.rotation)
+            float rotation = Mathf.Round(body.rotation / 90f) * 90f;
+            switch (rotation)
             {
                 case 0:
-                    body.velocity = move * speed * Vector3.up;
+                    body.velocity = move * speed * Vector2.up;
                     break;
                 case 90:
-                    body.velocity = move * speed * Vector3.left;
+                    body.velocity = move * speed * Vector2.left;
                     break;
                 case 180:
-                    body.velocity = move * speed * Vector3.down;
+                    body.velocity = move * speed * Vector2.down;
                     break;
                 case 270:
-                    body.velocity = move * speed * Vector3.right;
+                    body.velocity = move * speed * Vector2.right;
                     break;
             }
         }
 
         move = 0;
     }
-    
-    
+   
 
 }
