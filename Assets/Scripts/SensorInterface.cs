@@ -5,5 +5,5 @@ using UnityEngine;
 public interface ISensor
 {
     public string Name { get; set; }
-    public bool CheckCollision();
+    public bool HasContact();
 }

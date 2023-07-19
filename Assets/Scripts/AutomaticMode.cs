@@ -7,9 +7,14 @@ public class AutomaticMode : MonoBehaviour
 {
 
     private bool running = false;
+    private bool autoTurn = true;
+    private bool autoRun = true; 
     private float moveSpeed = 2;
-    private float turnSpeed = 2;
+    //private float turnSpeed = 10;
     private Rigidbody2D body;
+    private ISensor frontSensor;
+    private ISensor leftSensor;
+    private ISensor rightSensor;
 
 
     public void Start()
@@ -20,6 +25,7 @@ public class AutomaticMode : MonoBehaviour
 
     public void OnButtonPress()
     {
+        InitializeCollisionSensors();
         running = true;
     }
 
@@ -27,10 +33,28 @@ public class AutomaticMode : MonoBehaviour
     {
         if (running)
         {
-            bool objectAhead = UpdateCollisionSensors();
-            if (objectAhead)
+            
+            if (frontSensor.HasContact())
             {
-                body.transform.Rotate(Vector3.forward, 90);
+                if (!autoRun)
+                {
+                    running = false;
+                }
+                if (autoTurn)
+                {
+                    if (!rightSensor.HasContact())
+                    {
+                        body.transform.Rotate(Vector3.forward, -90);
+                    }
+                    else if (!leftSensor.HasContact())
+                    {
+                        body.transform.Rotate(Vector3.forward, 90);
+                    }
+                    else
+                    {
+                        body.transform.Rotate(Vector3.forward, 180);
+                    }
+                }
             }
             else
             {
@@ -41,18 +65,33 @@ public class AutomaticMode : MonoBehaviour
     }
 
 
-    private bool UpdateCollisionSensors()
+    private void InitializeCollisionSensors()
     {
-        bool collisionDetected = false;
         ISensor[] sensors = GetComponentsInChildren<ISensor>();
         foreach (ISensor sensor in sensors)
         {
-            bool contact = sensor.CheckCollision();
-            Debug.Log($"{sensor.Name} returns {(contact ? "nearby" : "no")} contact.");
-            collisionDetected = collisionDetected || contact;
+            switch (sensor.Name)
+            {
+                case "SensorFront":
+                    frontSensor = sensor;
+                    break;
+                case "SensorLeft":
+                    leftSensor = sensor;
+                    break;
+                case "SensorRight":
+                    rightSensor = sensor;
+                    break;
+            }
         }
-
-        return collisionDetected;
     }
 
+    public void OnAutoTurnChanged()
+    {
+        autoTurn = !autoTurn;
+    }
+
+    public void OnAutoRunChanged()
+    {
+        autoRun = !autoRun;
+    }
 }
