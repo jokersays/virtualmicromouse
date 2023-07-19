@@ -18,3 +18,7 @@
 - DONE better movement
 - DONE automatic (complete) run
 - ui controls
+
+## refinement 2
+- verschiedene levels
+- ziel definieren (und erkennen)
