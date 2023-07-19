@@ -5,51 +5,41 @@ using UnityEngine.UI;
 
 public class AutomaticMode : MonoBehaviour
 {
+
+    private bool running = false;
+    private float moveSpeed = 2;
+    private float turnSpeed = 2;
+    private Rigidbody2D body;
+
+
     public void Start()
     {
         Debug.Log("Start.");
-        //UpdateCollisionSensors();
+        body = GetComponent<Rigidbody2D>();
     }
 
-    int n;
     public void OnButtonPress()
     {
-        n++;
-        Debug.Log("Button clicked " + n + " times.");
-        Rigidbody2D body = GetComponent<Rigidbody2D>();
-
-
-        if (UpdateCollisionSensors())
-        {
-            body.rotation += 90f;
-        }
-
-
-        if (!UpdateCollisionSensors())
-        {
-            moveObject(body);
-        }
+        running = true;
     }
 
-    private void moveObject(Rigidbody2D body)
+    public void FixedUpdate()
     {
-        //move object
-        switch (body.rotation)
+        if (running)
         {
-            case 0:
-                body.position = body.position + Vector2.up;
-                break;
-            case 90:
-                body.position = body.position + Vector2.left;
-                break;
-            case 180:
-                body.position = body.position + Vector2.down;
-                break;
-            case 270:
-                body.position = body.position + Vector2.right;
-                break;
+            bool objectAhead = UpdateCollisionSensors();
+            if (objectAhead)
+            {
+                body.transform.Rotate(Vector3.forward, 90);
+            }
+            else
+            {
+                body.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+            }
+
         }
     }
+
 
     private bool UpdateCollisionSensors()
     {
