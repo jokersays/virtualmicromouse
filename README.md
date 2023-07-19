@@ -15,6 +15,6 @@
   - 90° turns
 
 ## refinement 1
-- better movement
-- automatic (complete) run
+- DONE better movement
+- DONE automatic (complete) run
 - ui controls
