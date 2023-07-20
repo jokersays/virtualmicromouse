@@ -16,6 +16,9 @@ public class AutomaticMode : MonoBehaviour
     private ISensor leftSensor;
     private ISensor rightSensor;
 
+    public AnimatorOverrideController yellow;
+    public AnimatorOverrideController mouse;
+
     public bool Running { get => running; set => running = value; }
 
     public void Start()
@@ -94,5 +97,22 @@ public class AutomaticMode : MonoBehaviour
     public void OnAutoRunChanged()
     {
         autoRun = !autoRun;
+    }
+
+    public void OnModelSelectionChanged(float value)
+    {
+        switch (value)
+        {
+            case 0:
+                GetComponent<Animator>().runtimeAnimatorController = null;
+                break;
+            case 1: 
+                GetComponent<Animator>().runtimeAnimatorController = yellow as RuntimeAnimatorController;
+                break;
+            case 2:
+                GetComponent<Animator>().runtimeAnimatorController = mouse as RuntimeAnimatorController;
+                break;
+        }
+        
     }
 }
