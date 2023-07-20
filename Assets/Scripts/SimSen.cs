@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SimSen : MonoBehaviour, ISensor
 {
-    private bool contact = false; 
+    private bool contact = false;
 
     public string Name { get; set; }
 
@@ -20,9 +20,19 @@ public class SimSen : MonoBehaviour, ISensor
         return contact;
     }
 
-    public void OnTriggerEnter2D()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        contact = true;
+        if (collision.isTrigger)
+        {
+            if (collision.gameObject.CompareTag("Target"))
+            {
+                GameObject.Find("Player").GetComponent<AutomaticMode>().Running = false;
+            }
+        }
+        else
+        {
+            contact = true;
+        }
     }
 
     public void OnTriggerExit2D()

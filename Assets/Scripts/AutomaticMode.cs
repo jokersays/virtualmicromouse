@@ -16,6 +16,7 @@ public class AutomaticMode : MonoBehaviour
     private ISensor leftSensor;
     private ISensor rightSensor;
 
+    public bool Running { get => running; set => running = value; }
 
     public void Start()
     {
