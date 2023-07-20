@@ -21,4 +21,7 @@
 
 ## refinement 2
 - verschiedene levels
+  - vorgegeben
+  - dynamisch
+- maus-auto-select
 - DONE ziel definieren (und erkennen)
