@@ -21,4 +21,4 @@
 
 ## refinement 2
 - verschiedene levels
-- ziel definieren (und erkennen)
+- DONE ziel definieren (und erkennen)
