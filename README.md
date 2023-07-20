@@ -17,11 +17,12 @@
 ## refinement 1
 - DONE better movement
 - DONE automatic (complete) run
-- ui controls
+- DONE ui controls
 
 ## refinement 2
 - verschiedene levels
   - vorgegeben
   - dynamisch
-- maus-auto-select
+- DONE maus-auto-select
 - DONE ziel definieren (und erkennen)
+- player prefab
