@@ -21,8 +21,13 @@
 
 ## refinement 2
 - verschiedene levels
-  - vorgegeben
-  - dynamisch
+  - DONE vorgegeben
+  - REF3 dynamisch
 - DONE maus-auto-select
 - DONE ziel definieren (und erkennen)
 - DONE player prefab
+
+## refinement 3
+- dynamic levels
+  - maze generation --> binary 2d array
+  - tilemap generation from array
