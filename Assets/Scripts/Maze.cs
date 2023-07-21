@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Maze : MonoBehaviour
 {
-    private MazeCell[,] maze;
-    public int mazeSize;
+    public MazeCell[,] maze;
+    public int mazeSize = 10;
 
-    public void startMaze()
+    public Maze()
     {
         maze = new MazeCell[mazeSize,mazeSize];
         for (int row = 0; row < mazeSize; row++)

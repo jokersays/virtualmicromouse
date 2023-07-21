@@ -26,13 +26,65 @@ public class TilemapGeneration : MonoBehaviour
 
     public void Start()
     {
-        int[,] randomMap = GenerateRandomMap(xSize, ySize);
+        //int[,] randomMap = GenerateRandomMap(xSize, ySize);
+        int[,] wallMap = CalculateWallMapFromMaze();
         Tile blueBlock = Resources.Load<Tile>("block_1");
         tilemap = GetComponent<Tilemap>();
 
-        GenerateTilemap(randomMap, tilemap, blueBlock);
-        CleanStart(tilemap, Vector3Int.zero);
+        GenerateTilemap(wallMap, tilemap, blueBlock);
+        //CleanStart(tilemap, Vector3Int.zero);
 
+    }
+
+    private int[,] CalculateWallMapFromMaze()
+    {
+        //Maze maze = GetComponent<Maze>();
+        //maze.startMaze();
+
+        Maze maze = new Maze();
+
+        // new size
+        int[,] map = new int[maze.mazeSize * 3 + 1, maze.mazeSize * 3 + 1];
+
+        // loop maze.maze
+        for (int x = 0; x < maze.mazeSize; x++)
+        {
+            for (int y = 0; y < maze.mazeSize; y++)
+            {
+                int nextX = (y * 3) + 1;
+                int nextY = (x * 3) + 1;
+                if (maze.maze[x, y].wallLeft)
+                {
+                    map[nextX - 1, nextY + 2] = 1;
+                    map[nextX - 1, nextY + 1] = 1;
+                    map[nextX - 1, nextY - 0] = 1;
+                    map[nextX - 1, nextY - 1] = 1;
+                }
+                if (maze.maze[x, y].wallRight)
+                {
+                    map[nextX + 2, nextY + 2] = 1;
+                    map[nextX + 2, nextY + 1] = 1;
+                    map[nextX + 2, nextY - 0] = 1;
+                    map[nextX + 2, nextY - 1] = 1;
+                }
+                if (maze.maze[x, y].wallBottom)
+                {
+                    map[nextX - 1, nextY - 1] = 1;
+                    map[nextX - 0, nextY - 1] = 1;
+                    map[nextX + 1, nextY - 1] = 1;
+                    map[nextX + 2, nextY - 1] = 1;
+                }
+                if (maze.maze[x, y].wallTop)
+                {
+                    map[nextX - 1, nextY + 2] = 1;
+                    map[nextX - 0, nextY + 2] = 1;
+                    map[nextX + 1, nextY + 2] = 1;
+                    map[nextX + 2, nextY + 2] = 1;
+                }
+            }
+        }
+
+        return map;
     }
 
     private void CleanStart(Tilemap tilemap, Vector3Int startingPosition)
@@ -50,11 +102,11 @@ public class TilemapGeneration : MonoBehaviour
         int columns = map.GetUpperBound(0);
         int rows = map.GetUpperBound(1);
 
-        for (int x = 0; x < columns; x++)
+        for (int x = 0; x <= columns; x++)
         {
-            for (int y = 0; y < rows; y++)
+            for (int y = 0; y <= rows; y++)
             {
-                Vector3Int position = new Vector3Int(x - columns/2, y - rows/2, 0);
+                Vector3Int position = new Vector3Int(x - 5, y - 5, 0);
                 tilemap.SetTile(position, (map[x, y] == 1 ? tile : null));
             }
         }
