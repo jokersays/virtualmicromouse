@@ -25,4 +25,4 @@
   - dynamisch
 - DONE maus-auto-select
 - DONE ziel definieren (und erkennen)
-- player prefab
+- DONE player prefab
