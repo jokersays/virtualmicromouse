@@ -3,9 +3,10 @@
 ## pixel graphics
 - 16x16 squares
   - 18x18 cm, 1.2 cm wall --> 16.8 cm floor
-  - 18 / 1.2 = 15 --> "half-tile" wall, resp. 30x30 tiles
+  - 18 / 1.2 = 15 --> "half-tile" wall, 15x15 tiles, resp. 30x30 tiles
   - 1.2 cm sq. posts --> 4 tiles
   - 1 tile eq .6 cm sq
+  - TODO: try mockup for 15 and 30 variant
   - Start in corner: top (north) open, limit west & south, wall east
 ## misc
 
