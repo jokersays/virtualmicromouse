@@ -1,4 +1,16 @@
-# virtualmicromouse
+# newmouse v24
+## shift godot
+## pixel graphics
+- 16x16 squares
+  - 18x18 cm, 1.2 cm wall --> 16.8 cm floor
+  - 18 / 1.2 = 15 --> "half-tile" wall, resp. 30x30 tiles
+  - 1.2 cm sq. posts --> 4 tiles
+  - 1 tile eq .6 cm sq
+  - Start in corner: top (north) open, limit west & south, wall east
+## misc
+
+
+# virtualmicromouse CW23
 
 ## first steps
 - DONE vorbereitung
@@ -28,6 +40,6 @@
 - DONE player prefab
 
 ## refinement 3
-- dynamic levels
+- DONE dynamic levels
   - maze generation --> binary 2d array
   - tilemap generation from array
